@@ -131,14 +131,50 @@
           </div>
         </div>
 
-        <NuxtLink to="/shoppingcart" class="flex items-center"> </NuxtLink>
+        <NuxtLink to="/shoppingcart" class="flex items-center">
+          <button
+            class="relative md:block hidden"
+            @mouseenter="isCartHover = true"
+            @mouseleave="isCartHover = false"
+          >
+            <span
+              class="absolute flex items-center justify-center -right-[3px] top-0 bg-[#ff4646] h-[17px] min-w-[17px] text-xs text-white px-0.5 rounded-full"
+              >0</span
+            >
+            <div class="min-w-[40px]">
+              <Icon
+                name="ph:shopping-cart-simple-light"
+                size="33"
+                :color="isCartHover ? '#ff4646' : ''"
+              />
+            </div>
+          </button>
+        </NuxtLink>
+
+        <button
+          @click="useStore.isMenuOvarlay = true"
+          class="md:hidden block rounded-full p-1.5 -mt-[4px] hover:bg-gray-200"
+        >
+          <Icon name="radix-icons:hamburger-menu" size="33" />
+        </button>
       </div>
     </div>
   </div>
+
+  <Loading v-if="useStore.isLoading" />
+
+  <div class="lg:pt-[150px] md:pt-[130px] pt-[80px]" />
+  <slot />
+
+  <Footer v-if="!userStore.isLoading" />
 </template>
 
 <script setup>
+import { useUserStore } from "~/stores/user";
+const useStore = useUserStore();
+
 let isAccountMenu = ref(false);
+let isCartHover = ref(false);
 let isSearching = ref(false);
 let searchItem = ref("");
 </script>
