@@ -30,6 +30,30 @@
           >
           <div class="truncate sm:pl-2">{{ product.title }}</div>
         </div>
+
+        <button
+          @click="removeFromCart()"
+          class="mx-3 sm:block hidden -mt-0.5 hover:text-red-500"
+        >
+          <Icon name="material-symbols:delete-outline" size="20" />
+        </button>
+      </div>
+
+      <div class="text-xl font-semibold">
+        $ <span class="font-bold">{{ product.price / 100 }}</span>
+      </div>
+      <p class="text-[#009a66] text-xs font-semibold pt-1">
+        Free 11-day delivery over $8
+      </p>
+      <p class="text-[#009a66] text-xs font-semibold pt-1">Free shipping</p>
+
+      <div class="flex items-center justify-end">
+        <button
+          @click="removeFromCart()"
+          class="sm:hidden block -mt-0.5 hover:text-red-500"
+        >
+          <Icon name="material-symbols:delete-outline" size="20" />
+        </button>
       </div>
     </div>
   </div>
