@@ -37,9 +37,84 @@
           </div>
         </div>
       </div>
+
+      <div class="md:hidden block my-4"></div>
+      <div class="md:w-[35%]">
+        <div id="Summary" class="bg-white rounded-lg p-4">
+          <div class="text-2xl font-extrabold mb-2">Summary</div>
+          <div class="flex items-center justify-between my-4">
+            <div class="font-semibold">Total</div>
+            <div class="text-2xl font-semibold">
+              $ <span class="font-extrabold">{{ totalPriceComputed }}</span>
+            </div>
+          </div>
+
+          <button
+            @click="goToCheckout"
+            class="flex items-center justify-center bg-[#fd374f] w-full text-white text-[21px] font-semibold p-1.5 rounded-full mt-4"
+          >
+            Checkout
+          </button>
+        </div>
+
+        <div id="PaymentProtection" class="bg-white rounded-lg p-4 mt-4">
+          <div class="text-lg font-semibold mb-2">Payment methods</div>
+          <div class="flex items-center justify-start gap-8 my-4">
+            <div v-for="card in cards">
+              <img class="h-6 w-6" :src="card" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useUserStore } from "~/stores/user";
+const userStore = useUserStore();
+const selectedArray = ref([]);
+
+onMounted(() => {
+  setTimeout(() => (userStore.isLoading = false), 200);
+});
+
+const totalPriceComputed = computed(() => {
+  let price = 0;
+  userStore.cart.forEach((prod) => {
+    price += prod.price;
+  });
+  return price / 100;
+});
+
+const selectedRadioFunc = (e) => {
+  if (!selectedArray.value.length) {
+    selectedArray.value.push(e);
+    return;
+  }
+
+  selectedArray.value.forEach((item, index) => {
+    if (e.id != item.id) {
+      selectedArray.value.push(e);
+    } else {
+      selectedArray.value.splice(index, 1);
+    }
+  });
+};
+
+const goToCheckout = () => {
+  let ids = [];
+  userStore.checkout = [];
+
+  selectedArray.value.forEach((item) => ids.push(item.id));
+
+  const filterIndex = (item) => {
+    return ids.indexOf(item.id) != -1;
+  };
+  let res = userStore.cart.filter(filterIndex);
+  res.forEach((item) => userStore.checkout.push(toRaw(item)));
+  return navigaTo("/checkout");
+};
+
+const cards = ref(["visa.png", "mastercard.png", "paypal.png", "applepay.png"]);
 </script>
