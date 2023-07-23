@@ -5,7 +5,7 @@
         <img
           v-if="currentImage"
           class="rounded-lg object-fit"
-          :scr="currentImage"
+          :src="currentImage"
         />
 
         <div
