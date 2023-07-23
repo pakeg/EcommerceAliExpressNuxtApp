@@ -119,7 +119,7 @@ const goToCheckout = () => {
   };
   let res = userStore.cart.filter(filterIndex);
   res.forEach((item) => userStore.checkout.push(toRaw(item)));
-  return navigaTo("/checkout");
+  return navigateTo("/checkout");
 };
 
 const cards = ref(["visa.png", "mastercard.png", "paypal.png", "applepay.png"]);
