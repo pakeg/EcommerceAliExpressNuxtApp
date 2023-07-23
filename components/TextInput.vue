@@ -33,7 +33,7 @@ const props = defineProps([
 const { input, placeholder, max, inputType, error } = toRefs(props);
 
 let isFocused = ref(false)
-const inputComputed = computed(() => {
+const inputComputed = computed({
     get: () => input.value,
     set: (val) => emit('update:input', val)
 })
