@@ -42,7 +42,7 @@ watch(
 watch(
   () => route.fullPath,
   () => {
-    if (windowWidth.value >= 767) userStore.isLoading = true;
+     userStore.isLoading = true;
   }
 );
 </script>
