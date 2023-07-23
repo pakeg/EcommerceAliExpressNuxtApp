@@ -65,7 +65,7 @@ const userStore = useUserStore();
 
 const props = defineProps(["product, selectedArray"]);
 const { product, selectedArray } = toRefs(props);
-
+console.log(product)
 const emit = defineEmits(["selectedRadio"]);
 let isHover = ref(false);
 let isSelected = ref(false);
