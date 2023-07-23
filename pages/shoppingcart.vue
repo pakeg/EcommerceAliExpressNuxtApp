@@ -28,7 +28,7 @@
 
         <div class="bg-[#feeeef] rounded-lg p-4 mt-4">
           <div class="text-red-500 font-bold">
-            Welcome Deal applicable on 1 item only
+            Welcome Deal applicable on {{ userStore.cart.length }} item only
           </div>
         </div>
 
