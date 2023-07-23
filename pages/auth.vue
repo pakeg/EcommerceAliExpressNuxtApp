@@ -37,7 +37,7 @@ watchEffect(() => {
 });
 
 const login = async (provider) => {
-  const { data, error } = await client.auth.signInWithAuth({
+  const { data, error } = await client.auth.signInWithOAuth({
     provider,
     redirectTo: window.location.origin
   });
