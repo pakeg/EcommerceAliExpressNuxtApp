@@ -153,7 +153,7 @@ onMounted(() => {
   });
 });
 
-watch(() => total.value, () => {
+watch(() => total.value, async () => {
     if(total.value > 0){
         await stripeInit()
     }
