@@ -152,7 +152,7 @@
         </NuxtLink>
 
         <button
-          @click="useStore.isMenuOvarlay = true"
+          @click="userStore.isMenuOvarlay = true"
           class="md:hidden block rounded-full p-1.5 -mt-[4px] hover:bg-gray-200"
         >
           <Icon name="radix-icons:hamburger-menu" size="33" />
@@ -161,7 +161,7 @@
     </div>
   </div>
 
-  <Loading v-if="useStore.isLoading" />
+  <Loading v-if="userStore.isLoading" />
 
   <div class="lg:pt-[150px] md:pt-[130px] pt-[80px]" />
   <slot />
@@ -171,7 +171,7 @@
 
 <script setup>
 import { useUserStore } from "~/stores/user";
-const useStore = useUserStore();
+const userStore = useUserStore();
 
 const client = useSupabaseClient();
 const user = useSupabaseUser();
