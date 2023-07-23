@@ -84,6 +84,14 @@ const route = useRoute()
 
 let product = ref(null)
 let currentImage = ref(null)
+const images = ref([
+    '',
+    'https://picsum.photos/id/212/800/800',
+    'https://picsum.photos/id/233/800/800',
+    'https://picsum.photos/id/165/800/800',
+    'https://picsum.photos/id/99/800/800',
+    'https://picsum.photos/id/144/800/800',
+])
 
 onBeforeMount(async () => {
   product.value = await useFetch(`/api/prisma/get-product-by-id/${route.params.id}`)
