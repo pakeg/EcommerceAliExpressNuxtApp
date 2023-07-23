@@ -30,7 +30,13 @@
 
 <script setup>
 const client = useSupabaseClient();
+import { useUserStore } from "~/stores/user";
+const userStore = useUserStore();
 const user = useSupabaseUser();
+
+onBeforeMount(() => {
+  setTimeout(() => (userStore.isLoading = false), 500);
+});
 
 watchEffect(() => {
   if (user.value) return navigateTo("/");
