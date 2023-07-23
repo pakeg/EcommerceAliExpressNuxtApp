@@ -63,11 +63,9 @@
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
 
-const props = defineProps(["product, selectedArray"]);
+const props = defineProps(["product", "selectedArray"]);
 const { product, selectedArray } = toRefs(props);
-console.log(product, 'product')
-  console.log('selectedArray', selectedArray)
-  console.log(props, 'props')
+  
 const emit = defineEmits(["selectedRadio"]);
 let isHover = ref(false);
 let isSelected = ref(false);
