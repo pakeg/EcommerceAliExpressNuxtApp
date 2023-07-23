@@ -153,9 +153,9 @@ onMounted(() => {
   });
 });
 
-watch(() => total.value, async () => {
+watch(() => total.value, () => {
     if(total.value > 0){
-        await stripeInit()
+        stripeInit()
     }
 })
 
