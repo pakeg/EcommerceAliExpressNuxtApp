@@ -39,7 +39,7 @@
           </div>
         </li>
         <li
-          v-if="false"
+          v-if="user"
           @click="signOut()"
           class="relative flex items-center justify-center py-2.5 border-b px-3 hover:bg-gray-100 cursor-pointer"
         >
